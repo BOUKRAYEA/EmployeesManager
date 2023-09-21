@@ -2,7 +2,7 @@
 
 namespace EmployeesManager.Models
 {
-    class Employee : INotifyPropertyChanged
+    public class Employee : INotifyPropertyChanged
     {
         private string name;
 
@@ -20,15 +20,15 @@ namespace EmployeesManager.Models
             set { address = value; OnPropertyChanged("Address"); }
         }
 
-        private int salary;
+        private float salary;
 
-        public int Salary
+        public float Salary
         {
             get { return salary; }
             set { salary = value; OnPropertyChanged("Salary"); }
         }
 
-        public Employee(string name, string address, int salary)
+        public Employee(string name, string address, float salary)
         {
             this.Name = name;
             this.Address = address;

@@ -6,15 +6,23 @@ namespace EmployeesManager
     public partial class MainWindow : Window
     {
         // Create ObservableCollection to save Employees Data
-        private ObservableCollection<Models.Employee> employees = new ObservableCollection<Models.Employee>();
+        public ObservableCollection<Models.Employee> Employees= new ObservableCollection<Models.Employee>();
 
         public MainWindow()
         {
             InitializeComponent();
 
             // Fill the DataGrid with the List of Employees  
-            employeesDataGrid.ItemsSource = employees;
+            employeesDataGrid.ItemsSource = Employees;
         }
+
+        /// <summary>
+        /// 
+        /// This method add new employee to the collection we had created previously 
+        /// This method GET its arguments from the filled TextBoxs in MainWindow
+        /// A Control Test for the inputs arguments from users was implemented in order to have a better User Exprience
+        /// 
+        /// </summary>
         private void addNewEmployee(object sender, RoutedEventArgs e)
         {
             // Control Inputs
@@ -26,17 +34,17 @@ namespace EmployeesManager
             {
                 MessageBox.Show("You have to enter a valid address!");
             }
-            else if (string.IsNullOrWhiteSpace(inputSalary.Text) || !int.TryParse(inputSalary.Text, out int result))
+            else if (string.IsNullOrWhiteSpace(inputSalary.Text) || !float.TryParse(inputSalary.Text, out float result))
             {
                 MessageBox.Show("You have to enter a valid salary!");
             }
             else
             {
                 // Create a New Employee Object
-                Models.Employee employee = new Models.Employee(inputName.Text, inputAddress.Text, int.Parse(inputSalary.Text));
+                Models.Employee employee = new Models.Employee(inputName.Text, inputAddress.Text, float.Parse(inputSalary.Text));
 
                 // Add an Employee to the DataCollection
-                employees.Add(employee);
+                Employees.Add(employee);
 
                 // Clear TextBox Fields
                 inputName.Clear();
